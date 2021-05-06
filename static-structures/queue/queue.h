@@ -31,13 +31,13 @@ SOFTWARE.
 
 #define MAX_SIZE_QUEUE 10
 
-typedef struct Queue* Queue;
 struct Queue {
     int size;
     int first;
     int last;
     int data[MAX_SIZE_QUEUE];
 };
+typedef struct Queue* Queue;
 
 Queue queue_create(void);
 Queue queue_delete(Queue queue);

@@ -31,11 +31,11 @@ SOFTWARE.
 
 #define MAX_SIZE_STACK 10
 
-typedef struct Stack* Stack;
 struct Stack{
 	int top;
 	int data[MAX_SIZE_STACK];
 };
+typedef struct Stack* Stack;
 
 Stack stack_create(void);
 Stack stack_delete(Stack stack);
