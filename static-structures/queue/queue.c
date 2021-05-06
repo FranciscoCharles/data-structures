@@ -23,7 +23,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
+static int get_correct_index(int index) {
+    if(index < 0) {
+        return MAX_SIZE_QUEUE - abs(index)%MAX_SIZE_QUEUE;
+    }
+    return index % MAX_SIZE_QUEUE;
+}
 Queue queue_create(void) {
     Queue queue = malloc(sizeof(struct Queue));
     queue->first = 0;
@@ -36,6 +41,18 @@ Queue queue_delete(Queue queue) {
     queue = NULL;
     return queue;
 }
+int queue_get_first(Queue queue){
+    if(queue_is_empty(queue)) {
+        return -1;
+    }
+    return queue->first;
+}
+int queue_get_last(Queue queue){
+    if(queue_is_empty(queue)) {
+        return -1;
+    }
+    return get_correct_index(queue->last - 1);
+}
 bool queue_is_empty(Queue queue) {
     return queue->size == 0;
 }
@@ -47,7 +64,7 @@ bool queue_push(Queue queue, int data) {
         return false;
     }
     queue->data[ queue->last ] = data;
-    queue->last = (queue->last + 1)%MAX_SIZE_QUEUE;
+    queue->last = get_correct_index(queue->last + 1);
     queue->size++;
     return true;
 }
@@ -56,7 +73,7 @@ bool queue_pop(Queue queue, int *data) {
         return false;
     }
     *data = queue->data[ queue->first ];
-    queue->first = (queue->first + 1)%MAX_SIZE_QUEUE;
+    queue->first = get_correct_index(queue->first + 1);
     queue->size--;
     return true;
 }

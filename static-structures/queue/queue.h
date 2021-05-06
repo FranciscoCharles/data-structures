@@ -41,6 +41,8 @@ typedef struct Queue* Queue;
 
 Queue queue_create(void);
 Queue queue_delete(Queue queue);
+int queue_get_first(Queue queue);
+int queue_get_last(Queue queue);
 bool queue_is_empty(Queue queue);
 bool queue_is_full(Queue queue);
 bool queue_push(Queue queue, int data);
