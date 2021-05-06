@@ -28,11 +28,11 @@ SOFTWARE.
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Data* Data;
 struct Data{
     int value;
     Data next;
 };
+typedef struct Data* Data;
 
 Data data_create();
 Data data_delete(Data data);

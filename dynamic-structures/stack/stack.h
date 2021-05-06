@@ -30,10 +30,10 @@ SOFTWARE.
 #include <stdbool.h>
 #include "data.h"
 
-typedef struct Stack* Stack;
 struct Stack{
 	Data top;
 };
+typedef struct Stack* Stack;
 
 Stack stack_create(void);
 Stack stack_delete(Stack stack);

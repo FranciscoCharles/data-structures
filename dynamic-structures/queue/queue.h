@@ -30,11 +30,11 @@ SOFTWARE.
 #include <stdbool.h>
 #include "data.h"
 
-typedef struct Queue* Queue;
 struct Queue {
     Data first;
     Data last;
 };
+typedef struct Queue* Queue;
 
 Queue queue_create(void);
 Queue queue_delete(Queue queue);
