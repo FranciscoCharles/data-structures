@@ -37,6 +37,7 @@ Queue queue_delete(Queue queue) {
         queue->first = tmp->next;
         tmp = data_delete(tmp);
     }
+    queue->last = NULL;
     free(queue);
     queue = NULL;
     return queue;
