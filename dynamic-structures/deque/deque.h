@@ -31,7 +31,7 @@ SOFTWARE.
 #include "data.h"
 
 struct Deque{
-Data first;
+	Data first;
     Data last;
 };
 typedef struct Deque* Deque;
