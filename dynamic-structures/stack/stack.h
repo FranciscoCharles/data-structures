@@ -38,7 +38,6 @@ typedef struct Stack* Stack;
 Stack stack_create(void);
 Stack stack_delete(Stack stack);
 bool stack_is_empty(Stack stack);
-bool stack_is_full(Stack stack);
 bool stack_push(Stack stack, int data);
 bool stack_pop(Stack stack, int *data);
 void stack_print(Stack stack);

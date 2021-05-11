@@ -39,7 +39,6 @@ typedef struct Deque* Deque;
 Deque deque_create(void);
 Deque deque_delete(Deque deque);
 bool deque_is_empty(Deque deque);
-bool deque_is_full(Deque deque);
 bool deque_push(Deque deque, int data);
 bool deque_push_front(Deque deque, int data);
 bool deque_pop(Deque deque, int *data);

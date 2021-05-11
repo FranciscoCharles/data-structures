@@ -39,7 +39,6 @@ typedef struct Queue* Queue;
 Queue queue_create(void);
 Queue queue_delete(Queue queue);
 bool queue_is_empty(Queue queue);
-bool queue_is_full(Queue queue);
 bool queue_push(Queue queue, int data);
 bool queue_pop(Queue queue, int *data);
 void queue_print(Queue queue);
