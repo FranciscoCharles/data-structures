@@ -43,13 +43,13 @@ Deque deque_delete(Deque deque) {
     return deque;
 }
 int deque_get_first(Deque deque){
-	if(deque->size == 0){
+	if(deque_is_empty(deque)){
 		return -1;
 	}
 	return deque->first;
 }
 int deque_get_last(Deque deque){
-	if(deque->size == 0){
+	if(deque_is_empty(deque)){
 		return -1;
 	}
 	return get_correct_index(deque->last - 1);
