@@ -32,7 +32,7 @@ SOFTWARE.
 
 struct Deque{
 	Data first;
-    Data last;
+	Data last;
 };
 typedef struct Deque* Deque;
 
