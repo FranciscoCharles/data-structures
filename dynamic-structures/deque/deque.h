@@ -29,7 +29,6 @@ SOFTWARE.
 #include <stdlib.h>
 #include <stdbool.h>
 #include "data.h"
-
 struct Deque{
 	Data first;
 	Data last;
