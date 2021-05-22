@@ -113,7 +113,6 @@ Data list_pop(List list) {
             previous = current;
             current = current->next;
         }
-
         if(previous == NULL) {
             list->head = NULL;
         } else {
