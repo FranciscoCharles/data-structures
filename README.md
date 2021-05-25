@@ -19,6 +19,7 @@ Atualmente encontra-se disponivel nesse repositorio as seguintes estruturas de d
   + [Deque](dynamic-structures/deque/)
   + [Pilha](dynamic-structures/stack/)
   + [Lista ligada](dynamic-structures/linked-list/)
+  + [Lista duplamente ligada](dynamic-structures/double-linked-list/)
 
 # **License**
 
