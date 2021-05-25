@@ -51,7 +51,7 @@ void list_append(List list, Data data) {
     } else {
         Data previous = NULL;
 
-        while ((current != NULL)) {
+        while (current != NULL) {
             previous = current;
             current = current->next;
         }
@@ -137,8 +137,9 @@ void list_print(List list) {
         printf("empty list\n");
     } else {
         Data data = list->head;
-        for ( ; data != NULL; data = data->next) {
+        while(data != NULL) {
             data_print(data);
+            data = data->next;
         }
     }
 }
