@@ -48,7 +48,7 @@ void list_append(List list, Data data) {
     Data current = list->head;
     Data previous = NULL;
 
-    while ((current != NULL)) {
+    while (current != NULL) {
         previous = current;
         current = current->next;
     }
@@ -122,7 +122,7 @@ Data list_pop(List list) {
 
         Data previous = NULL;
 
-        while ((current->next != NULL)) {
+        while (current->next != NULL) {
             previous = current;
             current = current->next;
         }
