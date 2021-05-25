@@ -46,20 +46,18 @@ List list_delete(List list) {
 void list_append(List list, Data data) {
 
     Data current = list->head;
-    if(current == NULL) {
-        list->head = data;
-    } else {
-        Data previous = NULL;
+    Data previous = NULL;
 
-        while (current != NULL) {
-            previous = current;
-            current = current->next;
-        }
-        if(previous == NULL) {
-            current->next = data;
-        } else {
-            previous->next = data;
-        }
+    while (current != NULL) {
+        previous = current;
+        current = current->next;
+    }
+    if(list->head == NULL) {
+        list->head = data;
+    } else if(previous == NULL) {
+        current->next = data;
+    } else {
+        previous->next = data;
     }
     list->size++;
 }
