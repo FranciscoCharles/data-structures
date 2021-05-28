@@ -20,6 +20,7 @@ Atualmente encontra-se disponivel nesse repositorio as seguintes estruturas de d
   + [Pilha](dynamic-structures/stack/)
   + [Lista ligada](dynamic-structures/linked-list/)
   + [Lista duplamente ligada](dynamic-structures/double-linked-list/)
+  + [Lista ligada circular](dynamic-structures/circular-linked-list/)
 
 # **License**
 
