@@ -28,6 +28,7 @@ List list_create() {
     List list = malloc(sizeof(struct List));
     list->size = 0;
     list->head = NULL;
+    list->last = NULL;
     return list;
 }
 List list_delete(List list) {
@@ -45,21 +46,28 @@ List list_delete(List list) {
 }
 void list_append(List list, Data data) {
 
-    Data current = list->head;
-    Data previous = NULL;
-
-    while (current != NULL) {
-        previous = current;
-        current = current->next;
+    Data last = list->last;
+    if(last == NULL) {
+        list->head = list->last = data;
+    } else {
+        data->prev = last;
+        last->next = list->last = data;
     }
-    if(list->head == NULL) {
+    list->size++;
+}
+static void list_insert_into(List list, Data previous, Data current, Data data) {
+    data->next = current;
+    data->prev = previous;
+
+    if (current != NULL) {
+        current->prev = data;
+    } else {
+        list->last = data;
+    }
+    if(previous == NULL) {
         list->head = data;
-    } else if(previous == NULL) {
-        current->next = data;
-        data->prev = current;
     } else {
         previous->next = data;
-        data->prev = previous;
     }
     list->size++;
 }
@@ -72,20 +80,7 @@ void list_insert_ordered(List list, Data data) {
         previous = current;
         current = current->next;
     }
-
-    data->next = current;
-    data->prev = previous;
-
-    if (current != NULL) {
-        current->prev = data;
-    }
-    if(previous == NULL) {
-        list->head = data;
-    } else {
-        previous->next = data;
-    }
-
-    list->size++;
+    list_insert_into(list, previous, current, data);
 }
 void list_insert(List list, unsigned index, Data data) {
 
@@ -97,44 +92,28 @@ void list_insert(List list, unsigned index, Data data) {
         current = current->next;
         index--;
     }
-
-    data->next = current;
-    data->prev = previous;
-
-    if (current != NULL) {
-        current->prev = data;
-    }
-    if(previous == NULL) {
-        list->head = data;
-    } else {
-        previous->next = data;
-    }
-    list->size++;
+    list_insert_into(list, previous, current, data);
 }
+
 bool list_is_empty(List list) {
     return list->head == NULL;
 }
+
 Data list_pop(List list) {
 
-    Data current = list->head;
+    Data current = list->last;
 
     if (current != NULL) {
 
-        Data previous = NULL;
-
-        while (current->next != NULL) {
-            previous = current;
-            current = current->next;
-        }
+        Data previous = current->prev;
 
         if (previous == NULL) {
-            list->head = current->next;
+            list->head = list->last = NULL;
         } else {
-            previous->next = current->next;
+            previous->next = NULL;
+            list->last = previous;
         }
-        if (current->next != NULL) {
-            current->next->prev = previous;
-        }
+        current->prev = current->next = NULL;
         list->size--;
     }
     return current;
@@ -146,8 +125,11 @@ Data list_pop_front(List list) {
     if (current != NULL) {
         if(current->next != NULL) {
             current->next->prev = NULL;
+        } else {
+            list->last = NULL;
         }
         list->head = current->next;
+        current->prev = current->next = NULL;
         list->size--;
     }
     return current;
@@ -167,10 +149,7 @@ void list_reverse_print(List list) {
     if (list_is_empty(list)) {
         printf("empty list\n");
     } else {
-        Data data = list->head;
-        while(data->next != NULL) {
-            data = data->next;
-        }
+        Data data = list->last;
         while(data != NULL) {
             data_print(data);
             data = data->prev;
@@ -182,53 +161,49 @@ void list_push(List list, Data data) {
     data->next = list->head;
     if(list->head != NULL) {
         list->head->prev = data;
+    } else {
+        list->last = data;
     }
     list->head = data;
     list->size++;
+}
+static Data list_remove_from(List list, Data previous, Data current) {
+    if (previous == NULL) {
+        list->head = current->next;
+    } else {
+        previous->next = current->next;
+    }
+    if (current->next != NULL) {
+        current->next->prev = previous;
+    } else {
+        list->last = previous;
+    }
+    current->prev = current->next = NULL;
+    list->size--;
+    return current;
 }
 Data list_remove(List list, unsigned index) {
 
     Data current = list->head;
 
-    if (current != NULL) {
-        Data previous = NULL;
+    Data previous = NULL;
 
-        while ((current->next != NULL) && ( index > 0)) {
-            previous = current;
-            current = current->next;
-            index--;
-        }
-        if (previous == NULL) {
-            list->head = current->next;
-        } else {
-            previous->next = current->next;
-        }
-        if (current->next != NULL) {
-            current->next->prev = previous;
-        }
-        list->size--;
+    while ((current->next != NULL) && ( index > 0)) {
+        previous = current;
+        current = current->next;
+        index--;
     }
-    return current;
+    return (current != NULL) ? list_remove_from(list, previous, current) : NULL;
 }
 
 Data list_remove_value(List list, int value) {
 
     Data current = list->head;
-    if(current != NULL) {
-        Data previous = NULL;
-        while ((current != NULL) && (current->value != value)) {
-            previous = current;
-            current = current->next;
-        }
-        if (previous == NULL) {
-            list->head = current->next;
-        } else {
-            previous->next = current->next;
-        }
-        if (current->next != NULL) {
-            current->next->prev = previous;
-        }
-        list->size--;
+    Data previous = NULL;
+
+    while ((current != NULL) && (current->value != value)) {
+        previous = current;
+        current = current->next;
     }
-    return current;
+    return (current != NULL) ? list_remove_from(list, previous, current) : NULL;
 }
