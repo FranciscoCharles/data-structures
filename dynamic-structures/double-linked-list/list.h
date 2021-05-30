@@ -31,6 +31,7 @@ SOFTWARE.
 struct List {
     unsigned size;
     Data head;
+    Data last;
 };
 typedef struct List* List;
 
