@@ -21,6 +21,7 @@ Atualmente encontra-se disponivel nesse repositorio as seguintes estruturas de d
   + [Lista ligada](dynamic-structures/linked-list/)
   + [Lista duplamente ligada](dynamic-structures/double-linked-list/)
   + [Lista ligada circular](dynamic-structures/circular-linked-list/)
+  + [Lista duplamente ligada circular](dynamic-structures/doubly-circular-linked-list/)
 
 # **License**
 
