@@ -19,10 +19,13 @@ Atualmente encontra-se disponivel nesse repositorio as seguintes estruturas de d
   + [Fila](dynamic-structures/queue/)
   + [Deque](dynamic-structures/deque/)
   + [Pilha](dynamic-structures/stack/)
-  + [Lista ligada](dynamic-structures/linked-list/)
-  + [Lista duplamente ligada](dynamic-structures/double-linked-list/)
-  + [Lista ligada circular](dynamic-structures/circular-linked-list/)
-  + [Lista duplamente ligada circular](dynamic-structures/doubly-circular-linked-list/)
+  + Listas
+    - [Lista ligada](dynamic-structures/linked-list/)
+    - [Lista duplamente ligada](dynamic-structures/double-linked-list/)
+    - [Lista ligada circular](dynamic-structures/circular-linked-list/)
+    - [Lista duplamente ligada circular](dynamic-structures/doubly-circular-linked-list/)
+  + Arvores
+    - [Arvore binaria de buca](dynamic-structures/tree/binary_search)
 
 # **License**
 
