@@ -1,4 +1,11 @@
+# project files
+
 *.fpj
 *.layout
-*.exe
 **/main.c
+
+# compile files
+
+*.exe
+*.rc
+*.mak
