@@ -1,0 +1,4 @@
+*.fpj
+*.layout
+*.exe
+**/main.c
