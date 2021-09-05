@@ -25,28 +25,23 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include "node.h"
 
 typedef struct Tree* Tree;
 
 struct Tree{
-    int number;
-    Tree left;
-    Tree right;
+    Node root;
 };
 
-Tree tree_init();
 bool tree_is_empty(Tree tree);
 size_t tree_count(Tree tree);
 Tree tree_create();
 Tree tree_delete(Tree tree);
-Tree tree_find(Tree tree, int number);
-Tree tree_insert(Tree tree, int number);
+Node tree_find(Tree tree, int number);
+bool tree_insert(Tree tree, int number);
 bool tree_include(Tree tree, int number);
 int tree_height(Tree tree);
 void tree_print(Tree tree);
-Tree tree_remove(Tree tree, int number);
+Node tree_remove(Tree tree, int number);
 
 #endif
